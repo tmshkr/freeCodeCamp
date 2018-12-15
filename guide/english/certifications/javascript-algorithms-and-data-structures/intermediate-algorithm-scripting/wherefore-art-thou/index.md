@@ -81,13 +81,12 @@ Check equivalence of `Object` in `collection` with `Object` passed as second par
       // "What's in a name? that which we call a rose
       // By any other name would smell as sweet.”
       // -- by William Shakespeare, Romeo and Juliet
-      var srcKeys = Object.keys(source);
-
-      return collection.filter(function (obj) {
-        return srcKeys.every(function (key) {
-          return obj.hasOwnProperty(key) && obj[key] === source[key];
-        });
-      });
+      
+      return collection.filter(obj =>
+        Object.keys(source).every(key =>
+            obj[key] === source[key]
+        )
+      );
     }
 
     // test here
@@ -97,9 +96,9 @@ Check equivalence of `Object` in `collection` with `Object` passed as second par
 
 ### Code Explanation:
 
-*   We filter through the collection using `.filter()`.
-*   Next, we return a `Boolean` value for the `.filter()` method.
-*   Finally, we reduce to `Boolean` value to be returned for the `.every()` method.
+*   We filter through `collection` using `.filter()` with ES6 arrow functions.
+*   Next, we get the array of keys in `source` to check every key's value.
+*   Finally, we return a boolean that is true when both key-value pairs are identical in `collection` and `source`, which then returns the filtered array for our function.
 
 #### Relevant Links
 
